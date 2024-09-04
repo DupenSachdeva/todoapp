@@ -1,31 +1,23 @@
-import { Schema, Types } from "mongoose";
+import mongoose from "mongoose";
+import { model, Schema, Types } from "mongoose";
+import { todoType } from './todotype.model';
 
-const mongoose = require("mongoose");
-
-interface user{
+interface Iuser{
     name:String,
-    email:String,
-    password:String,
-    todos?:[Types.ObjectId]
+    email:string,
+    password:string,
+    todoType:Schema.Types.ObjectId[],
+    createdAt:Date
 }
 
-const userSchema = new Schema<user>({
-     name:{
-        type:String,
-        required:true
-     },
-     email:{
-        typr:String,
-        required:true
-     },
-     password:{
-        type:String,
-        required:true
-     },
-     todos:[{
+const userSchema = new Schema({
+    name:{type:String,required:true},
+    email:{type:String,required:true},
+    password:{type:String,required:true},
+    todoType:[{
         type:Schema.Types.ObjectId,
-        ref:todo,
-     }]
-})
-const user = mongoose.model("user",userSchema);
-export default user;
+        ref:'todoType'
+    }]
+},{timestamps:true})
+
+export const user = model<Iuser>('user',userSchema);
