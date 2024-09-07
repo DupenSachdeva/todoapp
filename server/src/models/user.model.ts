@@ -1,12 +1,11 @@
 import mongoose from "mongoose";
 import { model, Schema, Types } from "mongoose";
-import { todoType } from './todotype.model';
 
 interface Iuser{
     name:String,
     email:string,
     password:string,
-    todoType:Schema.Types.ObjectId[],
+    todos:Schema.Types.ObjectId[],
     createdAt:Date
 }
 
@@ -14,9 +13,9 @@ const userSchema = new Schema({
     name:{type:String,required:true},
     email:{type:String,required:true},
     password:{type:String,required:true},
-    todoType:[{
+    todos:[{
         type:Schema.Types.ObjectId,
-        ref:'todoType'
+        ref:'subtodo'
     }]
 },{timestamps:true})
 

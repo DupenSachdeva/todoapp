@@ -5,7 +5,8 @@ interface Isubtodo{
     description?:string,
     createdAt:Date,
     completed:Boolean,
-    createdBy:Schema.Types.ObjectId
+    createdBy:Schema.Types.ObjectId,
+    type:string
 }
 
 const subTodoSchema = new Schema({
@@ -16,8 +17,14 @@ const subTodoSchema = new Schema({
         default:false
     },
     createdBy:{
-        type:Schema.Types.ObjectId
+        type:Schema.Types.ObjectId,
+        ref:"user"
+    },
+    type:{
+        type:Schema.Types.String,
     }
+    
 },{timestamps:true})
 
 export const subtodo = model<Isubtodo>('subtodo',subTodoSchema);
+
