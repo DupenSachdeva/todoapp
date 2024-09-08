@@ -1,11 +1,15 @@
-import app from "./app";
+import express from "express";
 import connectDb from "./db/connectdb";
+import app from "./app";
 require("dotenv").config();
-
-
 connectDb().then(()=>{
-              console.log("connection to databse established and server running on" + process.env.PORT);
-              })
+    
+    app.listen(process.env.PORT,()=>{console.log(" server running on 3000");
+
+    })
+});
+
+
 
 
 
