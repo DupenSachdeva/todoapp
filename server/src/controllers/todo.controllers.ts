@@ -3,6 +3,7 @@ import { customRequest } from "../middlewares/auth.middleware";
 import { user } from '../models/user.model';
 import { Isubtodo, subtodo } from '../models/subtodo.model';
 import { Types } from "mongoose";
+import { todotag } from "../models/todotags.model";
 
 export const createTodo = async function createTodo(req:Request,res:Response){
 
@@ -61,7 +62,21 @@ export const getTodos = async function getTodos(req:Request,res:Response){
     
    
 }
+export const createTag =  function createTag(req:Request,res:Response){
+    try {
+        
+        console.log("hi");
+        res.send("hi")
+        
+    } catch (error) {
+        console.log(error);
+        
+        res.status(400).send(error);
+    }
+    
 
+
+}
 function segregateTodos(userTodos:Isubtodo[]){
     let myMap: {[key:string]:Isubtodo[]} = {};
     console.log(userTodos);

@@ -13,6 +13,8 @@ export function authenticateUser(req:Request,res:Response,next:NextFunction) {
 
     const id = jwt.verify(token,process.env.USER_SECRET||"mySecret") as Types.ObjectId;
     (req as customRequest).userId = id;
+    console.log(id);
+    
      next();
 
     } catch (error) {

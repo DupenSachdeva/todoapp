@@ -1,5 +1,6 @@
 import { model, Schema, Types } from "mongoose";
 import { Iuser } from "./user.model";
+import { ITag, tagSchema } from "./todotags.model";
 
 export interface todoType{
     typeName:string,
@@ -22,6 +23,7 @@ export interface Isubtodo{
     createdBy:Types.ObjectId,
     colour:string,
     todoType:todoType
+    todotag?:ITag[]
 }
 
 export const subTodoSchema = new Schema<Isubtodo>({
@@ -38,7 +40,12 @@ export const subTodoSchema = new Schema<Isubtodo>({
     colour:String,
     todoType:{
         type:todoTypeSchema
-    }
+    },
+    todotag:[
+        {
+            type:tagSchema
+        }
+    ]
     
 },{timestamps:true})
 
