@@ -1,6 +1,7 @@
 import { model, Schema, Types } from "mongoose";
 import { Iuser } from "./user.model";
 import { ITag, tagSchema } from "./todotags.model";
+import { IList, listSchema } from "./todolists";
 
 export interface todoType{
     typeName:string,
@@ -22,8 +23,9 @@ export interface Isubtodo{
     completed:Boolean,
     createdBy:Types.ObjectId,
     colour:string,
-    todoType:todoType
-    todotag?:ITag[]
+    todoType:string,
+    todotag?:ITag[],
+    dueDate : Date
 }
 
 export const subTodoSchema = new Schema<Isubtodo>({
@@ -37,15 +39,18 @@ export const subTodoSchema = new Schema<Isubtodo>({
         type:Schema.Types.ObjectId,
         ref:"user"
     },
-    colour:String,
     todoType:{
-        type:todoTypeSchema
+        type:String
     },
     todotag:[
         {
             type:tagSchema
         }
-    ]
+    ],
+    dueDate:{
+        type:Date,
+        required:true
+    }
     
 },{timestamps:true})
 

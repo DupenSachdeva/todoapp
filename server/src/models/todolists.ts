@@ -2,13 +2,13 @@ import { model, Schema, Types } from "mongoose"
 import { Isubtodo, subtodo } from "./subtodo.model"
 import { Iuser } from "./user.model";
 
-export interface ITag{
-    name:string,
-    colour:string,
-    user:Types.ObjectId
+export interface IList{
+    name:String,
+    colour:String,
+    user:Iuser
 }
 
-export const tagSchema = new Schema({
+export const listSchema = new Schema({
     name:String,
     colour:String,
     user: {
@@ -19,4 +19,4 @@ export const tagSchema = new Schema({
 
 })
 
-export const todotag = model('todotag',tagSchema);
+export const todolist = model('todolist',listSchema);
